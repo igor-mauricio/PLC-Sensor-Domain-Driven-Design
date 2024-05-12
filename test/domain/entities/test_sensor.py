@@ -11,7 +11,7 @@ from domain.value_objects.sensor_id import SensorId
 from domain.value_objects.temperature import Temperature
 
 
-def test_temperature_sensor_should_sense_temperature():
+def test_temperature_sensor_should_sense_temperature() -> None:
     class TemperatureSource150(TemperatureSource):
         def get_current(self) -> Temperature:
             return Temperature(150)
@@ -24,7 +24,7 @@ def test_temperature_sensor_should_sense_temperature():
     assert temperatureSensor.measure().temperature == 150
 
 
-def test_pressure_sensor_should_sense_temperature():
+def test_pressure_sensor_should_sense_temperature() -> None:
     class PressureSource150(PressureSource):
         def get_current(self) -> Pressure:
             return Pressure(50)
@@ -37,7 +37,7 @@ def test_pressure_sensor_should_sense_temperature():
     assert pressureSensor.measure().pressure == 50
 
 
-def test_flow_sensor_should_sense_flow():
+def test_flow_sensor_should_sense_flow() -> None:
     class FlowSource150(FlowSource):
         def get_current(self) -> Flow:
             return Flow(50)

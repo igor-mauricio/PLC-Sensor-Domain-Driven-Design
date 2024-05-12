@@ -7,14 +7,16 @@ from infra.pressure_source_square_wave import PressureSourceSquareWave
 from infra.temperature_source_random import TemperatureSourceRandom
 
 
-def main():
+def main() -> None:
     temperature_source = TemperatureSourceRandom(low=10, high=30)
     flow_source = FlowSourceSine(1, 5)
     pressure_source = PressureSourceSquareWave(0.2, 2)
     repository = PlcRepositoryMemory()
     presenter = PresenterTerminal()
+
     plc_service = PlcService(
-        repository, temperature_source, flow_source, pressure_source)
+        repository, temperature_source, flow_source, pressure_source
+    )
     plc_controller = PlcController(plc_service, presenter)
 
     plc_controller.run()

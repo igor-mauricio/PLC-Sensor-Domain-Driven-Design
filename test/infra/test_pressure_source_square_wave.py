@@ -1,7 +1,7 @@
 from infra.pressure_source_square_wave import PressureSourceSquareWave
 
 
-def test_should_generate_square_wave():
+def test_should_generate_square_wave() -> None:
     flow_source = PressureSourceSquareWave(0.2, 2)
 
     measurements = []

@@ -1,8 +1,9 @@
-
-from abc import ABC, abstractmethod
-
 from domain.entities.sensor import Sensor
-from domain.exceptions import PlcNotFoundException, PlcWithIdAlreadyExists, SensorNotFound
+from domain.exceptions import (
+    PlcNotFoundException,
+    PlcWithIdAlreadyExists,
+    SensorNotFound,
+)
 from domain.plc_repository import PlcRepository
 from domain.value_objects.plc_id import PlcId
 from domain.entities.plc import Plc
@@ -17,23 +18,20 @@ class PlcRepositoryMemory(PlcRepository):
 
     def get_plc_by_id(self, id: PlcId) -> Plc:
         for plc in self.plcs:
-            if plc.get_id() == id:
+            if plc.id == id:
                 return plc
         raise PlcNotFoundException()
 
-    def get_all_plcs(self) -> list[Plc]:
-        return self.plcs
-
-    def add_plc(self, plc: Plc):
-        if any(plc.get_id() == p.get_id() for p in self.plcs):
+    def add_plc(self, added_plc: Plc):
+        if any(added_plc == plc for plc in self.plcs):
             raise PlcWithIdAlreadyExists()
 
-        self.plcs.append(plc)
+        self.plcs.append(added_plc)
 
     def remove_plc(self, id: PlcId):
         print(id)
         for i, plc in enumerate(self.plcs):
-            if plc.get_id() == id:
+            if plc.id == id:
                 self.plcs.pop(i)
                 return
         raise PlcNotFoundException()
@@ -61,3 +59,6 @@ class PlcRepositoryMemory(PlcRepository):
                 plc.remove_sensor(sensor)
                 return
         raise SensorNotFound()
+
+    def get_all_plcs(self) -> list[Plc]:
+        return self.plcs

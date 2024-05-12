@@ -6,6 +6,6 @@ from domain.exceptions import TemperatureOutOfBoundsException
 class Temperature:
     temperature: float
 
-    def __post_init__(self) -> TemperatureOutOfBoundsException:
+    def __post_init__(self) -> None:
         if self.temperature <= -273.15:
             raise TemperatureOutOfBoundsException()

@@ -9,7 +9,7 @@ from domain.value_objects.sensor_id import SensorId
 from domain.value_objects.temperature import Temperature
 
 
-def test_should_add_sensor_to_plc():
+def test_should_add_sensor_to_plc() -> None:
     class TemperatureSource150(TemperatureSource):
         def get_current(self) -> Temperature:
             return Temperature(150)
@@ -22,7 +22,7 @@ def test_should_add_sensor_to_plc():
     assert plc.get_sensors() == [sensor]
 
 
-def test_should_read_from_sensor():
+def test_should_read_from_sensor() -> None:
     class TemperatureSource150(TemperatureSource):
         def get_current(self) -> Temperature:
             return Temperature(150)
@@ -32,4 +32,4 @@ def test_should_read_from_sensor():
 
     plc.add_sensor(sensor)
 
-    assert plc.read_from_sensor(sensor.get_id()).temperature == 150
+    assert plc.read_from_sensor(sensor.id).temperature == 150

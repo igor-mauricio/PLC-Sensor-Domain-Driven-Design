@@ -1,6 +1,5 @@
 import math
 from domain.entities.pressure_source import PressureSource
-from domain.value_objects.flow import Flow
 from domain.value_objects.pressure import Pressure
 
 
@@ -15,7 +14,6 @@ class PressureSourceSquareWave(PressureSource):
         self._gain = gain
 
     def get_current(self) -> Pressure:
-        flow = Pressure((math.floor(self._current / self._period) %
-                         2) * self._gain)
+        flow = Pressure((math.floor(self._current / self._period) % 2) * self._gain)
         self._current += self._step
         return flow

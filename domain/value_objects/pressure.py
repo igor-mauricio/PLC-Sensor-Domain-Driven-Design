@@ -6,6 +6,6 @@ from domain.exceptions import PressureOutOfBoundsException
 class Pressure:
     pressure: float
 
-    def __post_init__(self) -> PressureOutOfBoundsException:
+    def __post_init__(self) -> None:
         if self.pressure < -100 or self.pressure > 100:
             raise PressureOutOfBoundsException()

@@ -1,4 +1,3 @@
-
 from abc import ABC, abstractmethod
 
 from domain.value_objects.flow import Flow

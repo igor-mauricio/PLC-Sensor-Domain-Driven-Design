@@ -1,14 +1,15 @@
 from dataclasses import dataclass
 import uuid
 from domain.exceptions import EmptySensorIdException
+from domain.primitives.entity_id import EntityId
 
 
 @dataclass(frozen=True)
-class SensorId:
+class SensorId(EntityId):
     id: uuid.UUID
 
-    def __post_init__(self) -> EmptySensorIdException:
-        if id == None or id == "":
+    def __post_init__(self) -> None:
+        if id is None or id == "":
             raise EmptySensorIdException()
 
     def __str__(self):

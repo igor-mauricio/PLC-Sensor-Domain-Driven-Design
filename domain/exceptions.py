@@ -1,5 +1,4 @@
-class DomainException(Exception):
-    ...
+class DomainException(Exception): ...
 
 
 class EmptyPlcIdException(DomainException):
@@ -57,6 +56,12 @@ class SensorNotFoundException(DomainException):
 
 
 class SensorWithIdAlreadyExists(DomainException):
+    def __init__(self, message: str = ""):
+        self.message = message
+        super().__init__(self.message)
+
+
+class EmptyEntityIdException(DomainException):
     def __init__(self, message: str = ""):
         self.message = message
         super().__init__(self.message)

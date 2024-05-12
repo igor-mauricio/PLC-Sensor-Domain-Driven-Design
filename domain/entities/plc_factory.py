@@ -12,5 +12,6 @@ class PlcFactory:
 
     @staticmethod
     def from_id(id: str) -> Plc:
-        plc_id = PlcId(id)
+        id_uuid = uuid.UUID(id)
+        plc_id = PlcId(id_uuid)
         return Plc(plc_id)

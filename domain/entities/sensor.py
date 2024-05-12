@@ -5,7 +5,7 @@ from typing import TypeVar
 from domain.value_objects.sensor_id import SensorId
 from domain.entities.source import Source
 
-T = TypeVar('T')
+T = TypeVar("T")
 
 
 @dataclass
@@ -14,12 +14,8 @@ class Sensor(ABC):
     source: Source
 
     @abstractmethod
-    def measure(self) -> T:
+    def measure(self):
         return self.source.get_current()
 
     @abstractmethod
-    def measure_string(self) -> str:
-        ...
-
-    def get_id(self) -> SensorId:
-        return self.id
+    def measure_string(self) -> str: ...

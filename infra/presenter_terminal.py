@@ -19,19 +19,19 @@ class PresenterTerminal(Presenter):
 
         print("CLPs disponíveis:")
         for plc in plcs:
-            print(f"- ID: {plc.get_id()}")
+            print(f"- ID: {plc.id}")
             print(f"  Quantidade de Sensores: {len(plc.get_sensors())}")
 
     def show_plc_info(self, plc: Plc):
         print("Informações do CLP:")
-        print(f"- ID: {plc.get_id()}")
+        print(f"- ID: {plc.id}")
         sensors = plc.get_sensors()
         if len(sensors) == 0:
             print("- Nenhum sensor cadastrado")
             return
         print(f"- Sensores:")
         for sensor in sensors:
-            print(f"-- ID: {sensor.get_id()}")
+            print(f"-- ID: {sensor.id}")
             if isinstance(sensor, TemperatureSensor):
                 print(f"   Tipo: Temperatura")
             elif isinstance(sensor, PressureSensor):
@@ -53,13 +53,13 @@ class PresenterTerminal(Presenter):
         print("- exit: Sair do sistema")
 
     def show_success(self, message):
-        print('\x1b[6;30;42m' + message + '\x1b[0m')
+        print("\x1b[6;30;42m" + message + "\x1b[0m")
 
     def show_error(self, message):
-        print('\x1b[6;30;41m' + message + '\x1b[0m')
+        print("\x1b[6;30;41m" + message + "\x1b[0m")
 
     def show_info(self, message):
-        print('\x1b[6;30;44m' + message + '\x1b[0m')
+        print("\x1b[6;30;44m" + message + "\x1b[0m")
 
     def exit(self):
         print("Encerrando sistema...")
@@ -74,10 +74,11 @@ class PresenterTerminal(Presenter):
                 self.show_error(f"Comando inválido: {e.command}")
             except InvalidArgumentCountException as e:
                 self.show_error(
-                    f"Quantidade de argumentos inválida: {e.expected} esperados, {e.actual} recebidos")
+                    f"Quantidade de argumentos inválida: {e.expected} esperados, {e.actual} recebidos"
+                )
 
     def parse_user_action(self, action: str) -> UserCommand:
-        action_parts = action.split(' ')
+        action_parts = action.split(" ")
         command = action_parts[0]
         args = action_parts[1:]
 

@@ -1,14 +1,15 @@
 from dataclasses import dataclass
 import uuid
 from domain.exceptions import EmptyPlcIdException
+from domain.primitives.entity_id import EntityId
 
 
 @dataclass(frozen=True)
-class PlcId:
+class PlcId(EntityId):
     id: uuid.UUID
 
-    def __post_init__(self) -> EmptyPlcIdException:
-        if self.id == None or self.id == "":
+    def __post_init__(self) -> None:
+        if self.id is None or self.id == "":
             raise EmptyPlcIdException()
 
     def __str__(self):

@@ -1,4 +1,3 @@
-
 from dataclasses import dataclass
 from domain.exceptions import FlowOutOfBoundsException
 
@@ -7,6 +6,6 @@ from domain.exceptions import FlowOutOfBoundsException
 class Flow:
     flow: float
 
-    def __post_init__(self) -> FlowOutOfBoundsException:
+    def __post_init__(self) -> None:
         if self.flow < -100 or self.flow > 100:
             raise FlowOutOfBoundsException()
